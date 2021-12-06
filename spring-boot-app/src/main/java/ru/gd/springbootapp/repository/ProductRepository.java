@@ -32,4 +32,8 @@ public class ProductRepository {
         return productList.stream().filter(product -> product.getId() == id).findFirst().orElse(null);
 
     }
+
+    public void deleteFindById(int id){
+        productList.stream().filter(product -> product.getId() == id).findFirst().ifPresent(productList::remove);
+    }
 }

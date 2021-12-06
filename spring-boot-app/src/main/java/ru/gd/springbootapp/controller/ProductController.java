@@ -1,5 +1,4 @@
 package ru.gd.springbootapp.controller;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +7,6 @@ import ru.gd.springbootapp.service.ProductService;
 
 
 @Controller
-@RequestMapping("/product")
 public class ProductController {
 
     private ProductService productService;
@@ -40,6 +38,11 @@ public class ProductController {
     @PostMapping("/add")
     public String saveProduct(Product product){
         productService.saveProduct(product);
+        return "redirect:/all";
+    }
+    @PostMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Integer id){
+        productService.deleteById(id);
         return "redirect:/all";
     }
 }
